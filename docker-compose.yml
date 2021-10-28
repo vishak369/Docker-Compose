@@ -1,0 +1,32 @@
+services:
+  tomcat:
+    image: tomcat:8-jdk8
+    ports:
+      - 8080:8080
+    volumes:
+      - /opt/docker_tomcat:/usr/local/tomcat/webapps/
+
+
+  elasticsearch:
+    image: vishakkv/elasticsearch-5.5.0
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  httpd:
+    image: vishakkv/httpd
+    ports:
+      - 80:80
+
+  logstash:
+    image: vishakkv/logstash:5.5.0
+
+
+  mysql:
+    image: vishakkv/mysql:8.0.23
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-db:/var/lib/mysql
+volumes:
+  mysql-db:
